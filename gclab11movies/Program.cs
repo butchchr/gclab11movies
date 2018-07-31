@@ -31,8 +31,8 @@ namespace gclab11movies
             movieList.Add(new Movie("Galaxy Quest", "scifi"));
             movieList.Add(new Movie("Star Trek II, The Wrath of Khan", "scifi"));
             
-            bool run = true;
-            while (run)
+            bool y = true;
+            while (y)
             {
                 Console.WriteLine($"Welcome to the Movies List Application\nThere are num number of movies in this list.\nWhat category are you interested in? (animated, drama, horror, scifi) ");
                 string userChoice = Console.ReadLine();
@@ -85,34 +85,20 @@ namespace gclab11movies
                     Console.WriteLine("You did not enter a valid genre");
                 }
 
-                if (IsPressedKey("Do you want to quit? y/n"))
+                //continue y/n
+                bool invalid = true;
+                while (invalid)
                 {
-                    Console.WriteLine("Have a Great Day!");
-                    Console.ReadKey();
-                    run = false;
-                }
-                else
-                {
-                    run = true;
+                    Console.WriteLine("Continue? (y/n):");
+                    ConsoleKeyInfo pressed = Console.ReadKey();
+                    Console.WriteLine();
+                    bool isY = pressed.Key == ConsoleKey.Y;
+                    bool isN = pressed.Key == ConsoleKey.N;
+
+                    invalid = !isY && !isN;
+                    y = isY;
                 }
             }
-        }
-
-        static bool IsPressedKey(string Prompt)
-        {
-            bool invalid = true;
-            while (invalid)
-            {
-                Console.WriteLine(Prompt);
-                ConsoleKeyInfo pressed = Console.ReadKey();
-                Console.WriteLine();
-                bool isY = pressed.Key == ConsoleKey.Y;
-                bool isN = pressed.Key == ConsoleKey.N;
-
-                invalid = !isY && !isN;
-                return true;
-            }
-            return false;
         }
     }
 }
